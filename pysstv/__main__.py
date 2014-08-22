@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+
+import pyximport
+pyximport.install()
+
 from PIL import Image
 from argparse import ArgumentParser
 from sys import stderr
