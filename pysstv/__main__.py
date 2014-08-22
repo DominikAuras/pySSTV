@@ -2,8 +2,8 @@
 
 from __future__ import print_function
 
-import pyximport
-pyximport.install()
+#import pyximport
+#pyximport.install()
 
 from PIL import Image
 from argparse import ArgumentParser
