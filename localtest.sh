@@ -9,4 +9,9 @@ fi
 virtualenv --system-site-packages dbg
 source dbg/bin/activate
 pip install pillow cython pillowfight
+
+cython pysstv/*.pyx
+python setup.py build_ext --inplace
+nosetests pysstv/tests
+
 pip install .

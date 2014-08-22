@@ -14,14 +14,15 @@ from common import get_asset_filename
 class TestSSTV(unittest.TestCase):
 
     def setUp(self):
-        self.s = SSTV(False, 48000, 16)
-        self.s.VIS_CODE = 0x00
-        self.s.SYNC = 7
+        class Wrapper(SSTV):
+          VIS_CODE = 0x00
+          SYNC = 7
+        self.s = Wrapper(False, 48000, 16)
 
     def test_horizontal_sync(self):
         horizontal_sync = self.s.horizontal_sync()
         expected = (1200, self.s.SYNC)
-        actual = horizontal_sync.next()
+        actual = horizontal_sync[0]
         self.assertEqual(expected, actual)
 
     def test_gen_freq_bits(self):

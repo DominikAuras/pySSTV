@@ -54,6 +54,11 @@ the first and the last, maybe the last two should be called directly, the
 others are just listed here for the sake of completeness and to make the
 flow easier to understand.
 
+Cython-related:
+Run `cython *.pyx` in pysstv/ to generate sstv.c. Use `python setup.py
+build_ext --inplace` to build sstv.so and place it in pysstv/ for testing
+within the development directory, e.g. for nosetests pysstv/tests.
+
 License
 -------
 

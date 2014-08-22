@@ -14,7 +14,7 @@ class TestMartinM1(unittest.TestCase):
         self.image = Image.new('RGB', (320, 256))
         self.s = color.MartinM1(self.image, 48000, 16)
         lena = Image.open(get_asset_filename('320x256.png'))
-        self.lena = color.MartinM1(lena, 48000, 16)
+        self.lena = color.MartinM1(lena, 48000, 16)        
 
     def test_gen_freq_bits(self):
         expected = pickle.load(open(get_asset_filename("MartinM1_freq_bits.p")))
