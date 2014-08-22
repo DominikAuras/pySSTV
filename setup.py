@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from setuptools import setup
+from Cython.Build import cythonize
 
 setup(
     name='PySSTV',
@@ -13,6 +14,7 @@ setup(
     keywords='HAM SSTV slow-scan television Scottie Martin Robot',
     install_requires = ['pillowfight',],
     license='MIT',
+    ext_modules=cythonize(["pysstv/*.pyx"]), 
     classifiers=[
         'Development Status :: 4 - Beta',
         'Topic :: Communications :: Ham Radio',
