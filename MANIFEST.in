@@ -1,1 +1,4 @@
 include README.md
+include pysstv/sstv.c
+include pysstv/sstv.pyx
+include pysstv/sstv.pxd

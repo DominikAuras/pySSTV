@@ -3,14 +3,21 @@
 from setuptools import setup
 from distutils.extension import Extension
 
-try:
-  from Cython.Build import cythonize
-except:
-  print("You do not seem to have Cython installed")
-  print("Try 'pip install cython' first")
-  raise SystemExit
+from distutils.command.sdist import sdist as _sdist
+
+cmdclass = {}
+
+class sdist(_sdist):
+  def run(self):
+    # Make sure the compiled Cython files in the distribution are up-to-date
+    from Cython.Build import cythonize
+    cythonize(['pysstv/sstv.pyx'])
+    _sdist.run(self)
+        
+cmdclass['sdist'] = sdist
 
 setup(
+    cmdclass = cmdclass,
     name='PySSTV',
     version='0.2.5cy',
     description='Python classes for generating Slow-scan Television transmissions',
@@ -21,7 +28,7 @@ setup(
     keywords='HAM SSTV slow-scan television Scottie Martin Robot',
     install_requires = ['pillowfight',],
     license='MIT',
-    ext_modules=cythonize("pysstv/*.pyx"),
+    ext_modules = [Extension("pysstv.sstv",["pysstv/sstv.c"])],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Topic :: Communications :: Ham Radio',
