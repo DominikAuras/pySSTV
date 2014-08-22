@@ -1,11 +1,18 @@
 # -*- encoding: utf-8 -*-
 
 from setuptools import setup
-from Cython.Build import cythonize
+from distutils.extension import Extension
+
+try:
+  from Cython.Build import cythonize
+except:
+  print("You do not seem to have Cython installed")
+  print("Try 'pip install cython' first")
+  raise SystemExit
 
 setup(
     name='PySSTV',
-    version='0.2.5',
+    version='0.2.5cy',
     description='Python classes for generating Slow-scan Television transmissions',
     author=u'András Veres-Szentkirályi',
     author_email='vsza@vsza.hu',
@@ -14,7 +21,7 @@ setup(
     keywords='HAM SSTV slow-scan television Scottie Martin Robot',
     install_requires = ['pillowfight',],
     license='MIT',
-    ext_modules=cythonize(["pysstv/*.pyx"]), 
+    ext_modules=cythonize("pysstv/*.pyx"),
     classifiers=[
         'Development Status :: 4 - Beta',
         'Topic :: Communications :: Ham Radio',
@@ -23,4 +30,9 @@ setup(
         'Operating System :: OS Independent',
         ],
     long_description=open('README.md').read(),
+    entry_points={
+        'console_scripts': [
+            'pysstv = pysstv.__main__:main'
+        ],
+    },
 )
