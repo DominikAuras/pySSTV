@@ -8,7 +8,7 @@ pyximport.install()
 from PIL import Image
 from argparse import ArgumentParser
 from sys import stderr
-from pysstv import color, grayscale
+import sstv, grayscale, color
 
 SSTV_MODULES = [color, grayscale]
 
